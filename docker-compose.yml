@@ -1,0 +1,14 @@
+services:
+  cardable:
+    build: .
+    container_name: cardable
+    ports:
+      - "8901:8000"
+    volumes:
+      - cardable-data:/data
+    environment:
+      - TZ=America/New_York
+    restart: unless-stopped
+
+volumes:
+  cardable-data:

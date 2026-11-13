@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Cardable — the retro card table</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="chrome">
+  <div class="logo">CARDABLE</div>
+  <div id="roomInfo" class="room-info">not at a table</div>
+  <button id="libBtn" class="btn small">📚 Library</button>
+  <button id="setBtn" class="btn small">⚙</button>
+</header>
+
+<section id="lobby" class="panel">
+  <h2>Sit down</h2>
+  <label>Your name <input id="nameInput" maxlength="24" placeholder="Joey"></label>
+  <div class="row">
+    <select id="profileSelect"></select>
+    <button id="createBtn" class="btn">Create table</button>
+  </div>
+  <div class="row">
+    <input id="codeInput" placeholder="TABLE CODE" maxlength="4" style="text-transform:uppercase">
+    <button id="joinBtn" class="btn">Join table</button>
+  </div>
+  <p class="hint">Sandbox table: the software deals, you enforce the rules.</p>
+</section>
+
+<main id="game" class="hidden">
+  <div id="seatsBar"></div>
+  <div id="turnBanner"></div>
+  <div id="tableWrap">
+    <div id="felt"></div>
+    <div id="tableTools" class="panel slim">
+      <div id="stackTools"></div>
+      <div class="row wrap">
+        <span>Dice:</span>
+        <span id="diceBtns"></span>
+        <input id="customSides" type="number" min="2" max="1000" placeholder="d?" style="width:64px">
+        <button id="customDieBtn" class="btn small">+ custom</button>
+        <button id="coinBtn" class="btn small">🪙 coin</button>
+      </div>
+      <div class="row">
+        <button id="startBtn" class="btn">▶ Start game (lock stacks)</button>
+        <button id="passBtn" class="btn">Pass turn ➜</button>
+      </div>
+      <div id="log"></div>
+    </div>
+  </div>
+  <section id="handWrap">
+    <h3>Your hand <span id="handCount"></span></h3>
+    <div id="hand"></div>
+    <p class="hint">Tap a hand card to play it face-up · double-tap any card to examine · drag table cards &amp; dice</p>
+  </section>
+</main>
+
+<div id="examine" class="overlay hidden">
+  <div class="exam-card" id="examCard"></div>
+  <div class="exam-text" id="examText"></div>
+  <div id="holdbar"><div id="holdfill"></div></div>
+  <button id="examClose" class="btn">Tap to return</button>
+</div>
+
+<div id="deckview" class="overlay hidden">
+  <div class="dv-head">
+    <div id="dvTitle"></div>
+    <div id="dvTerms" class="hint"></div>
+    <div id="dvTally"></div>
+  </div>
+  <div class="row" id="dvManualRow">
+    <input id="dvFilter" placeholder="Keywords — e.g. basic land · Elf creature · mana value 3 or less">
+    <button id="dvFilterBtn" class="btn small">Filter</button>
+  </div>
+  <div id="dvGrid"></div>
+  <div class="row">
+    <button id="dvTail" class="btn hidden"></button>
+    <button id="dvClose" class="btn">Done</button>
+  </div>
+  <p class="hint">Matches are lit; everything stays visible — the filter is a flashlight, not a gate. Tap a card to take it.</p>
+</div>
+
+<div id="library" class="overlay hidden">
+  <div class="sheet">
+    <h2>Your library</h2>
+    <p class="hint">Opponents never see this. Upload a card image — it is playable immediately; fix its words whenever.</p>
+    <input type="file" id="uploadInput" accept="image/*">
+    <div id="libList"></div>
+    <h3>Make a deck</h3>
+    <div class="row"><input id="deckName" placeholder="Deck name"><button id="makeDeckBtn" class="btn small">Save deck from ✓ cards</button></div>
+    <div id="deckList"></div>
+    <button id="libClose" class="btn">Close</button>
+  </div>
+</div>
+
+<div id="settings" class="overlay hidden">
+  <div class="sheet">
+    <h2>Settings</h2>
+    <label>Phrase-link firing:
+      <select id="linkMode">
+        <option value="instant">Long-hold fires (hold bar fills)</option>
+        <option value="confirm">Long-hold arms, then confirm tap</option>
+      </select>
+    </label>
+    <button id="setClose" class="btn">Close</button>
+  </div>
+</div>
+
+<footer id="buildFooter"></footer>
+<script src="app.js"></script>
+</body>
+</html>
